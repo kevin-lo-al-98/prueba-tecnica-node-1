@@ -40,11 +40,13 @@ docker-compose.override.yml
 # Frontend specific
 frontend/node_modules/
 frontend/dist/
+frontend/.env
 
 # Backend specific
 backend/node_modules/
 backend/dist/
 backend/build/
+backend/.env
 
 # Others
 coverage/

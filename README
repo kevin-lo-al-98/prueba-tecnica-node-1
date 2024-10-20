@@ -32,8 +32,9 @@ Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local.
 ### Clonar el repositorio
 
 ```bash
-git clone https://github.com/kevin-lo-al-98/PRUEBA-TECNICA-NODE.git
-cd mi-proyecto
+git clone https://github.com/kevin-lo-al-98/prueba-tecnica-node-1
+.git
+cd prueba-tecnica-node-1
 ```
 
 ---
