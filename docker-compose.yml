@@ -4,7 +4,7 @@ services:
     ports:
       - "5173:5173" # Mapea el puerto 5173 en el host al puerto 5173 del contenedor
     volumes:
-      - ./frontend/src:/usr/src/app/src # Mapea el código del proyecto en tu máquina local al contenedor
+      - ./frontend:/usr/src/app # Mapea el código del proyecto en tu máquina local al contenedor
       - /usr/src/app/node_modules # Evita que los módulos node sean sobrescritos en el contenedor
     environment:
       - NODE_ENV=development
