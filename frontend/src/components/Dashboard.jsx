@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import AuthContext from '../context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
-  const history = useHistory();
+  const navigate = useNavigate();  // Reemplazamos useHistory por useNavigate
 
   const handleLogout = () => {
     logout();
-    history.push('/login');
+    navigate('/login');  // Redirigir al login después de cerrar sesión
   };
+console.log('entro');
 
-  if (!isAuthenticated) {
-    history.push('/login');
-  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');  // Redirigir al login si no está autenticado
+    }
+  }, [isAuthenticated, navigate]);  // Dependencia en isAuthenticated
 
   return (
     <div>

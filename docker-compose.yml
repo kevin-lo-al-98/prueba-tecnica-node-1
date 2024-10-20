@@ -2,25 +2,25 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "5173:5173" # Mapea el puerto 5173 en el host al puerto 5173 del contenedor
+      - "5173:5173" # Exponemos el puerto 5173 para Vite
     volumes:
-      - ./frontend:/usr/src/app # Mapea el código del proyecto en tu máquina local al contenedor
-      - /usr/src/app/node_modules # Evita que los módulos node sean sobrescritos en el contenedor
+      - ./frontend:/usr/src/app # Mapea el código fuente al contenedor
+      - /usr/src/app/node_modules # Evita que se sobreescriban los node_modules
     environment:
       - NODE_ENV=development
     depends_on:
-      - backend # Si tu frontend depende del backend
+      - backend # Si depende del backend
 
   backend:
     build: ./backend
     ports:
-      - "3001:3000"
+      - "3001:3000" # Mapea el puerto 3000 del contenedor al puerto 3001 en tu máquina local
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://root:root@db:5432/pruebatecnicadb
     depends_on:
-      - db
-      
+      - db # Asegurarse de que la base de datos esté disponible antes de iniciar el backend
+
   db:
     image: postgres:13
     environment:
@@ -30,7 +30,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5432:5432" # Mapea el puerto 5432 para PostgreSQL en tu máquina local
 
 volumes:
   postgres_data:

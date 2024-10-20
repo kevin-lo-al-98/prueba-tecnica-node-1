@@ -1,20 +1,25 @@
-# Cambia a una versión reciente de Node.js (al menos 16.9.0 o superior)
-FROM node:18
+# Usa una imagen de Node.js
+FROM node:20-alpine
 
-# Crear el directorio de trabajo en el contenedor
+# Establece el directorio de trabajo
 WORKDIR /usr/src/app
 
-# Copiar package.json y package-lock.json para instalar las dependencias
+# Copia package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar las dependencias
+# Instala las dependencias del backend
 RUN npm install
 
-# Copiar el resto de los archivos de la aplicación
+# Copia todo el código fuente del backend
 COPY . .
 
-# Exponer el puerto en el que escucha el backend (por ejemplo, 3001)
-EXPOSE 3001
+# Copia el script wait-for-it.sh
+COPY wait-for-it.sh /usr/src/app/wait-for-it.sh
+RUN chmod +x /usr/src/app/wait-for-it.sh
 
-# Ejecutar el servidor en modo desarrollo con nodemon
-CMD ["npm", "run", "dev"]
+# Expone el puerto 3000
+EXPOSE 3000
+
+# Usa el script wait-for-it.sh para esperar que PostgreSQL esté listo
+CMD ["./wait-for-it.sh", "db:5432", "--", "npm", "run", "dev"]
+

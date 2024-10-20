@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { registerUser } from '../api/auth';
+import { registerUser } from '../api/authService';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -7,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+console.log('entro');
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,0 +1,22 @@
+node_modules
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# Ignorar archivos de configuración locales
+.env.local
+.env.development.local
+.env.production.local
+
+# Ignorar logs y archivos de depuración
+logs
+*.log
+*.log.*
+
+# Ignorar directorios del editor de código
+.vscode/
+.idea/
+
+# Archivos temporales del sistema
+.DS_Store
+*.swp

@@ -1,20 +1,20 @@
-# Utilizar una imagen oficial de Node.js
-FROM node:18
+# Usa una imagen ligera de Node.js
+FROM node:20-alpine
 
-# Crear el directorio de trabajo en el contenedor
+# Crea el directorio de trabajo en el contenedor
 WORKDIR /usr/src/app
 
-# Copiar package.json y package-lock.json para instalar las dependencias
+# Copia los archivos package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar las dependencias de la aplicación
+# Instala las dependencias del proyecto (esto incluye Vite)
 RUN npm install
 
-# Copiar el resto de los archivos de la aplicación
+# Copia todo el código fuente al contenedor
 COPY . .
 
-# Exponer el puerto en el que Vite escucha (por defecto es 5173)
+# Expone el puerto 5173 para Vite
 EXPOSE 5173
 
-# Iniciar la aplicación en modo desarrollo
+# Comando para iniciar el servidor de desarrollo de Vite
 CMD ["npm", "run", "dev"]
