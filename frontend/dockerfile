@@ -1,0 +1,20 @@
+# Utilizar una imagen oficial de Node.js
+FROM node:18
+
+# Crear el directorio de trabajo en el contenedor
+WORKDIR /usr/src/app
+
+# Copiar package.json y package-lock.json para instalar las dependencias
+COPY package*.json ./
+
+# Instalar las dependencias de la aplicación
+RUN npm install
+
+# Copiar el resto de los archivos de la aplicación
+COPY . .
+
+# Exponer el puerto en el que Vite escucha (por defecto es 5173)
+EXPOSE 5173
+
+# Iniciar la aplicación en modo desarrollo
+CMD ["npm", "run", "dev"]

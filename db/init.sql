@@ -1,0 +1,39 @@
+CREATE TABLE rol (
+    id SERIAL PRIMARY KEY,            
+    nombre VARCHAR(50) NOT NULL UNIQUE,  
+    descripcion VARCHAR(255)          
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+-- Crear tabla de usuarios
+CREATE TABLE usuario (
+    id SERIAL PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    id_rol INTEGER REFERENCES roles(id) NOT NULL -- FK
+);
+
+-- Crear tabla de empleados
+CREATE TABLE empleado (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    salario INTEGER NOT NULL,
+    fecha_ingreso DATE NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    id_usuario INTEGER REFERENCES usuario(id), -- FK
+);
+
+-- Crear tabla de solicitudes
+CREATE TABLE solicitud (
+    id SERIAL PRIMARY KEY,
+    codigo VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(50) NOT NULL,
+    resumen VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    id_empleado INTEGER REFERENCES empleado(id), -- FK
+);

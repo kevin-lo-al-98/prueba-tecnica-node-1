@@ -1,0 +1,50 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Output directories
+dist/
+build/
+tmp/
+out/
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Frontend specific
+frontend/node_modules/
+frontend/dist/
+
+# Backend specific
+backend/node_modules/
+backend/dist/
+backend/build/
+
+# Others
+coverage/

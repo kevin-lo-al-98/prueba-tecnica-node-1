@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173" # Mapea el puerto 5173 en el host al puerto 5173 del contenedor
+    volumes:
+      - ./frontend/src:/usr/src/app/src # Mapea el código del proyecto en tu máquina local al contenedor
+      - /usr/src/app/node_modules # Evita que los módulos node sean sobrescritos en el contenedor
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend # Si tu frontend depende del backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://root:root@db:5432/pruebatecnicadb
+    depends_on:
+      - db
+      
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: pruebatecnicadb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

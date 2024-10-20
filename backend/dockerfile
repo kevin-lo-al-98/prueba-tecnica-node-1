@@ -1,0 +1,20 @@
+# Cambia a una versión reciente de Node.js (al menos 16.9.0 o superior)
+FROM node:18
+
+# Crear el directorio de trabajo en el contenedor
+WORKDIR /usr/src/app
+
+# Copiar package.json y package-lock.json para instalar las dependencias
+COPY package*.json ./
+
+# Instalar las dependencias
+RUN npm install
+
+# Copiar el resto de los archivos de la aplicación
+COPY . .
+
+# Exponer el puerto en el que escucha el backend (por ejemplo, 3001)
+EXPOSE 3001
+
+# Ejecutar el servidor en modo desarrollo con nodemon
+CMD ["npm", "run", "dev"]
